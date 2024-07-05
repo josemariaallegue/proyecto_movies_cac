@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CAC-MOVIES</title>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="../public/css/style.css" />
     <script
       src="https://kit.fontawesome.com/f7fb471b65.js"
       crossorigin="anonymous"
@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap"
       rel="stylesheet"
     />
-    <link rel="shortcut icon" href="/icons/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../public/icons/favicon.ico" type="image/x-icon" />
   </head>
 
   <body>
@@ -29,10 +29,10 @@
             <a class="linkNav" href="#tendencias">Tendencias</a>
           </li>
           <li class="listaItem">
-            <a class="linkNav" href="/views/registrarse.html">Registrarse</a>
+            <a class="linkNav" href="registrarse.html">Registrarse</a>
           </li>
           <li class="listaItem">
-            <a class="linkNav iniciarSesion" href="/views/iniciosesion.html"
+            <a class="linkNav iniciarSesion" href="iniciosesion.html"
               >Iniciar Sesión</a
             >
           </li>
@@ -55,7 +55,7 @@
           <br />
           Cancela en cualquier momento.
         </h2>
-        <a class="botonRegistrarse" href="/views/registrarse.html">
+        <a class="botonRegistrarse" href="registrarse.html">
           Registrate
         </a>
       </section>
@@ -127,19 +127,19 @@
         </ul>
       </nav>
       <a href="#main" class="flechaArriba">
-        <img src="/imgs/flecha-hacia-arriba.png" alt="ir arriba flecha" />
+        <img src="../public/imgs/flecha-hacia-arriba.png" alt="ir arriba flecha" />
       </a>
       <p class="aportes">
         Aporte realizado por coordinación JAVA-PHP Colaborador
         <a
           href="https://www.linkedin.com/in/gisele-milagros-gonzalez"
-          target="_blank"
+          target="_blank" rel="noopener noreferrer"
           >Gisele M. Gonzalez</a
         >
       </p>
       <p class="video">
         Proyecto paso a paso
-        <a href="https://youtu.be/1PgXE1c5jOM" target="_blank">Video Youtube</a>
+        <a href="https://youtu.be/1PgXE1c5jOM" target="_blank" rel="noopener noreferrer">Video Youtube</a>
       </p>
     </footer>
 
@@ -148,6 +148,6 @@
       AOS.init();
     </script>
     <!--script que trae peliculas de un servidor de tercero y crea cada pelicula en el dom-->
-    <script src="/js/cargar_peliculas_index.js"></script>
+    <script src="../public/js/cargar_peliculas_index.js"></script>
   </body>
-</html>
+</html> 
