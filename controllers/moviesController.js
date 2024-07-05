@@ -3,7 +3,7 @@ const pool = require("./connectionMysql.js");
 
 const getMovies = async (req, res) => {
   try {
-    const [result] = await pool.query("select * from movies");
+    const [result] = await pool.query("select * from mymovies.Movies");
     res.status(200).json(result);
   } catch (err) {
     console.error({ error: err });
@@ -15,7 +15,7 @@ const getMovie = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
     const [result] = await pool.query(
-      "select * from mymovies.movies where id=?",
+      "select * from mymovies.Movies where MovieID=?",
       [id]
     );
 
@@ -35,7 +35,7 @@ const createMovie = async (req, res) => {
     const { title, director, date, cover, country, genre } = req.body;
 
     const [movieInDatabase] = await pool.query(
-      "select * from mymovies.movies where titulo=?",
+      "select * from mymovies.Movies where Title=?",
       [title]
     );
 
@@ -45,7 +45,7 @@ const createMovie = async (req, res) => {
         .json({ msg: `Movie with name '${title}' already in database` });
     } else {
       const [result, data] = await pool.query(
-        "insert into mymovies.movies values (null, ?, ?, ?, ?, ?, ?) ",
+        "insert into mymovies.Movies values (null, ?, ?, ?, ?, ?, ?) ",
         [title, director, date, cover, country, genre]
       );
 
@@ -65,7 +65,7 @@ const deleteMovie = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
     const [result] = await pool.query(
-      "delete from mymovies.movies where id=?",
+      "delete from mymovies.Movies where MovieID=?",
       [id]
     );
 
@@ -90,12 +90,12 @@ const updateMovie = async (req, res) => {
     const { title, director, date, cover, country, genre } = req.body;
 
     const [movieInDatabase] = await pool.query(
-      "select * from mymovies.movies where titulo=?",
+      "select * from mymovies.Movies where Title=?",
       [title]
     );
 
     const [result] = await pool.query(
-      "update mymovies.movies set titulo=?, director=?, fecha_lanzamiento=?, imagen=?, pais=?, genero=? where id=?",
+      "update mymovies.Movies set Title=?, Director=?, Year=?, CoverImage=?, Countries_CountryID=?, Genres_GenreID=? where MovieID=?",
       [title, director, date, cover, country, genre, id]
     );
 
