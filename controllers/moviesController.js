@@ -3,7 +3,7 @@ const pool = require("./connectionMysql.js");
 
 const getMovies = async (req, res) => {
   try {
-    const [result] = await pool.query("select * from mymovies.Movies");
+    const [result] = await pool.query("select * from Movies");
     res.status(200).json(result);
   } catch (err) {
     console.error({ error: err });
@@ -14,10 +14,9 @@ const getMovies = async (req, res) => {
 const getMovie = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const [result] = await pool.query(
-      "select * from mymovies.Movies where MovieID=?",
-      [id]
-    );
+    const [result] = await pool.query("select * from Movies where MovieID=?", [
+      id,
+    ]);
 
     if (result.length === 0) {
       res.status(404).json({ msg: `Movie with id '${id}' not found` });
@@ -35,7 +34,7 @@ const createMovie = async (req, res) => {
     const { title, director, date, cover, country, genre } = req.body;
 
     const [movieInDatabase] = await pool.query(
-      "select * from mymovies.Movies where Title=?",
+      "select * from Movies where Title=?",
       [title]
     );
 
@@ -45,7 +44,7 @@ const createMovie = async (req, res) => {
         .json({ msg: `Movie with name '${title}' already in database` });
     } else {
       const [result, data] = await pool.query(
-        "insert into mymovies.Movies values (null, ?, ?, ?, ?, ?, ?) ",
+        "insert into Movies values (null, ?, ?, ?, ?, ?, ?) ",
         [title, director, date, cover, country, genre]
       );
 
@@ -64,10 +63,9 @@ const createMovie = async (req, res) => {
 const deleteMovie = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const [result] = await pool.query(
-      "delete from mymovies.Movies where MovieID=?",
-      [id]
-    );
+    const [result] = await pool.query("delete from Movies where MovieID=?", [
+      id,
+    ]);
 
     console.log(result);
 
@@ -90,12 +88,12 @@ const updateMovie = async (req, res) => {
     const { title, director, date, cover, country, genre } = req.body;
 
     const [movieInDatabase] = await pool.query(
-      "select * from mymovies.Movies where Title=?",
+      "select * from Movies where Title=?",
       [title]
     );
 
     const [result] = await pool.query(
-      "update mymovies.Movies set Title=?, Director=?, Year=?, CoverImage=?, Countries_CountryID=?, Genres_GenreID=? where MovieID=?",
+      "update Movies set Title=?, Director=?, Year=?, CoverImage=?, Countries_CountryID=?, Genres_GenreID=? where MovieID=?",
       [title, director, date, cover, country, genre, id]
     );
 
