@@ -1,11 +1,12 @@
 const path = require("path");
 const express = require("express");
+require("dotenv").config();
 const { logger } = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
-const PORT = process.env.PORT || 3500;
+const PORT = process.env.SERVER_PORT || 3500;
 
 app.use(logger);
 app.use(express.json());
@@ -14,7 +15,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/root"));
 app.use("/movies", require("./routes/movies"));
-// app.use("/users", require("./routes/users"));
 
 app.all("*", (req, res) => {
   res.status(404);
