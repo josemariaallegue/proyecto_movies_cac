@@ -1,13 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('form');
-  form.addEventListener('submit', (event) => {
+    const registerForm = document.getElementById('registerForm');
+    registerForm.addEventListener('submit', async (event) => {
       if (!validateForm()) {
           console.log('El formulario no es válido. Por favor, corrige los errores.');
           event.preventDefault();
       } else {
           console.log('El formulario es válido. Enviar datos...');
-      }
-  });
+          event.preventDefault();
+          const formData = new FormData(registerForm);
+            try {
+                const response = await fetch('/auth/register', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    console.log('Registro exitoso!!');
+                    window.location.href = './iniciosesion.html';
+                } else {
+                    console.error('Error de registro:', result.error);
+                }
+            } catch (error) {
+                console.error('Error en la solicitud:', error);
+            }
+        }
+    });
+
 
   const validateForm = () => {
       let isValid = true;
@@ -17,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       isValid = validateEmailField('Email', 'El correo electrónico no es válido') && isValid;
       isValid = validateField('Password', 'La contraseña es obligatoria') && isValid;
       isValid = validateField('Birthday', 'La fecha de nacimiento es obligatoria') && isValid;
-      isValid = validateField('ProfilePicture', 'La imagen de perfil es obligatoria') && isValid;
+      /*isValid = validateField('ProfilePicture', 'La imagen de perfil es obligatoria') && isValid;*/
       isValid = validateField('Countries_CountryID', 'El país es obligatorio') && isValid;
 
       const terminos = document.getElementById('terminos').checked;
@@ -78,21 +96,21 @@ document.addEventListener('DOMContentLoaded', () => {
       return re.test(email);
   };
 
-  form.querySelectorAll('input').forEach(input => {
-      input.addEventListener('input', () => {
-          const value = input.value.trim();
-          if (value !== '') {
-              setSuccessFor(input);
-          }
-      });
-  });
+  registerForm.querySelectorAll('input').forEach(input => {
+    input.addEventListener('input', () => {
+        const value = input.value.trim();
+        if (value !== '') {
+            setSuccessFor(input);
+        }
+    });
+});
 
-  form.querySelectorAll('select').forEach(select => {
-      select.addEventListener('change', () => {
-          const value = select.value;
-          if (value !== '') {
-              setSuccessFor(select);
-          }
-      });
-  });
+registerForm.querySelectorAll('select').forEach(select => {
+    select.addEventListener('change', () => {
+        const value = select.value;
+        if (value !== '') {
+            setSuccessFor(select);
+        }
+    });
+});
 });

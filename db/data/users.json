@@ -188,5 +188,15 @@
     "Birthday": "1982-05-12",
     "ProfilePicture": "1720325999205-imagenPerfil.jpg",
     "Countries_CountryID": "4"
+  },
+  {
+    "UserID": 77,
+    "Name": "codigo",
+    "Surname": "final",
+    "Email": "codigofinal145@mail.com",
+    "Password": "123456",
+    "Birthday": "1982-05-12",
+    "ProfilePicture": "1720368187933-imagenPerfil.jpg",
+    "Countries_CountryID": "4"
   }
 ]

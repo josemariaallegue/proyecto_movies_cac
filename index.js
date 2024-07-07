@@ -8,6 +8,7 @@ const userRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/authRoutes');
 const rootRoutes = require('./routes/root');
 const dotenv = require('dotenv').config();
+const { validateToken } = require('./controllers/authController');
 
 
 const app = express();
@@ -24,12 +25,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Servir archivos estáticos
-app.use("/", express.static(path.join(__dirname, "./public")));
+app.use("/", express.static(path.join(__dirname, "../public")));
 app.use("/", express.static(path.join(__dirname, "./views"))); 
 
 // Rutas específicas
-app.use("/movies", movieRoutes);
-app.use("/users", userRoutes);
+app.use("/movies", validateToken, movieRoutes);
+app.use("/users", validateToken, userRoutes);
 app.use('/auth', authRoutes);  
 
 // Rutas generales (root)
@@ -41,6 +42,7 @@ const PORT = process.env.PORT || 3500;
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, './views/index.html'));
 });
+
 // Manejo de rutas no encontradas
 app.all("*", (req, res) => {
   res.status(404);
@@ -66,4 +68,3 @@ app.listen(PORT, () => {
     require('./db/initDB.js'); // Solo importa y ejecuta initDb.js si es necesario
   }
 });
-

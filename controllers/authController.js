@@ -1,22 +1,22 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { getUserByEmail, createUser, getUserById, updateUser } = require('../controllers/userController');
+const { getUserByEmail, createUser, getUserById, updateUser } = require('./userController');
 const fs = require('fs');
 const path = require('path');
 const db = require('../db/db');
 
-// Función para hacer la firma digital
 function generateAccessToken(user) {
     return jwt.sign(user, process.env.SECRET, { expiresIn: '1h' });
 }
 
 function validateToken(req, res, next) {
-    const accessToken = req.headers['authorization'] || req.query.accessToken;
-    if (!accessToken) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if (!token) {
         return res.status(403).json({ error: 'Acceso Denegado' });
     }
 
-    jwt.verify(accessToken, process.env.SECRET, (error, user) => {
+    jwt.verify(token, process.env.SECRET, (error, user) => {
         if (error) {
             return res.status(403).json({ error: 'Acceso denegado, token expiró o es incorrecto' });
         } else {

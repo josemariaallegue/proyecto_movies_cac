@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const result = await response.json();
           if (result.token) {
+              localStorage.setItem('token', result.token);
               console.log('Inicio de sesión exitoso!!');
               window.location.href = result.redirectUrl || '/';
           } else {
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
           console.error('Error en la solicitud:', error);
       }
   });
+
 
   const validateForm = () => {
       let isValid = true;

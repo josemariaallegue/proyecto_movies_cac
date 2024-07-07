@@ -25,8 +25,6 @@ router.post('/register', upload.single('ProfilePicture'), registerUser);
 router.post('/auth', authenticateUser);
 
 // Ruta PUT para actualizar la imagen de perfil
-
 router.put('/profile/:UserID', validateToken, upload.single('ProfilePicture'), updateUserProfile);
-
 
 module.exports = router;
