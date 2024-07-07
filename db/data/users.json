@@ -198,5 +198,25 @@
     "Birthday": "1982-05-12",
     "ProfilePicture": "1720368187933-imagenPerfil.jpg",
     "Countries_CountryID": "4"
+  },
+  {
+    "UserID": 78,
+    "Name": "Gonzu",
+    "Surname": "Front",
+    "Email": "gonzu@front.com",
+    "Password": "$2b$10$lbM5gMIL0IR4njVh.AhK9O/EjlsUHjXMzUUrPV0HaEZUEdglmfVLC",
+    "Birthday": "1985-04-05",
+    "ProfilePicture": "1720386766302-imagenPerfil.jpg",
+    "Countries_CountryID": "1"
+  },
+  {
+    "UserID": 79,
+    "Name": "gonzalo",
+    "Surname": "elfront",
+    "Email": "alto@front.com",
+    "Password": "$2b$10$afS9AHMIT2NGGQ3ZtDx2tePrqfTgX9nmdeP6mHrcnZvuJw3M0GF0G",
+    "Birthday": "1999-01-01",
+    "ProfilePicture": "1720387524867-imagenPerfil.jpg",
+    "Countries_CountryID": "1"
   }
 ]

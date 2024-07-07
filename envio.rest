@@ -1,2 +1,2 @@
 GET http://localhost:3500/
-Authorization: Bearer   
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjc5LCJlbWFpbCI6ImFsdG9AZnJvbnQuY29tIiwiaWF0IjoxNzIwMzg3NTI0LCJleHAiOjE3MjAzOTExMjR9.hmS2-0b1hkdhY4MfDAi-sHfkgvKeQIPkdCRHq37tsBU  

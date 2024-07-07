@@ -49,12 +49,16 @@ async function registerUser(req, res) {
 
         console.log('Usuario creado exitosamente!!');
 
-        res.status(201).json({ message: 'Usuario creado exitosamente!!' });
+        // Generar token
+        const token = generateAccessToken({ userId: newUser.UserID, email: newUser.Email });
+
+        res.status(201).json({ message: 'Usuario creado exitosamente!!', token });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
+
 
 async function authenticateUser(req, res) {
     try {
