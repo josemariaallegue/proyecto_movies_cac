@@ -5,7 +5,10 @@ const dbConfig = {
     user: 'root',
     password: '',
     database: 'mymovies',
-    multipleStatements: true
+    multipleStatements: true,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 };
 
 const connection = mysql.createConnection(dbConfig);

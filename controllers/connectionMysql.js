@@ -1,3 +1,4 @@
+/*
 const mysql2 = require("mysql2/promise");
 
 const pool = mysql2.createPool({
@@ -5,7 +6,8 @@ const pool = mysql2.createPool({
   port: 3306,
   database: "mymovies",
   user: "root",
-  password: "1234",
+  password: " "
 });
 
 module.exports = pool;
+*/

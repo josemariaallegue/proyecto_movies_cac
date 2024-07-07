@@ -1,4 +1,3 @@
-// src/db/initDb.js
 const fs = require('fs');
 const path = require('path');
 const connection = require('./db');
@@ -25,7 +24,7 @@ function insertDataFromFile(tableName, filePath) {
     });
 }
 
-// Rutas a los archivos JSON (ajustadas según la estructura de tu proyecto)
+// Rutas a los archivos JSON 
 const jsonFilesPath = path.join(__dirname, './data');
 const countriesFilePath = path.join(jsonFilesPath, 'countries.json');
 const genresFilePath = path.join(jsonFilesPath, 'genres.json');

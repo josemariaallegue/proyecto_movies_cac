@@ -1,8 +1,8 @@
 const db = require('../db/db');
 const fs = require('fs');
 const path = require('path');
+const bcrypt = require("bcrypt");
 
-// Obtener todos los usuarios
 const getAllUsers = (req, res) => {
     const sql = 'SELECT * FROM Users';
     db.query(sql, (err, results) => {
@@ -11,7 +11,6 @@ const getAllUsers = (req, res) => {
     });
 };
 
-// Obtener usuario por ID
 const getUserById = (req, res) => {
     const { UserID } = req.params;
     const sql = 'SELECT * FROM Users WHERE UserID = ?';
@@ -21,7 +20,6 @@ const getUserById = (req, res) => {
     });
 };
 
-// Obtener usuario por email
 const getUserByEmail = (Email) => {
     return new Promise((resolve, reject) => {
         const sql = 'SELECT * FROM Users WHERE Email = ?';
@@ -32,13 +30,16 @@ const getUserByEmail = (Email) => {
     });
 };
 
-// Crear nuevo usuario
 const createUser = (Name, Surname, Email, Password, Birthday, ProfilePicture, Countries_CountryID) => {
     return new Promise((resolve, reject) => {
+        bcrypt.hash(Password, 10, (err, hashedPassword) => {
+      if (err) {
+        return reject(err);
+      }
         const sql = 'INSERT INTO Users (Name, Surname, Email, Password, Birthday, ProfilePicture, Countries_CountryID) VALUES (?, ?, ?, ?, ?, ?, ?)';
-        db.query(sql, [Name, Surname, Email, Password, Birthday, ProfilePicture, Countries_CountryID], (err, result) => {
-            if (err) return reject(err);
-            
+        db.query(sql, [Name, Surname, Email, hashedPassword, Birthday, ProfilePicture, Countries_CountryID], (err, result) => {
+            if (err) { return reject(err);
+            }
             const newUser = {
                 UserID: result.insertId,
                 Name,
@@ -61,9 +62,9 @@ const createUser = (Name, Surname, Email, Password, Birthday, ProfilePicture, Co
             });
         });
     });
+});
 };
 
-// Actualizar usuario
 const updateUser = (req, res) => {
     const { UserID } = req.params;
     const { Name, Surname, Email, Password, Birthday, ProfilePicture, Countries_CountryID } = req.body;
@@ -74,7 +75,6 @@ const updateUser = (req, res) => {
     });
 };
 
-// Eliminar usuario
 const deleteUser = (req, res) => {
     const { UserID } = req.params;
     const sql = 'DELETE FROM Users WHERE UserID = ?';
@@ -92,3 +92,4 @@ module.exports = {
     updateUser,
     deleteUser
 };
+

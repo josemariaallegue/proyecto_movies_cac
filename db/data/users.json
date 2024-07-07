@@ -128,5 +128,65 @@
     "Birthday": "1982-05-12",
     "ProfilePicture": "1720137044914-imagenPerfil.jpg",
     "Countries_CountryID": "1"
+  },
+  {
+    "UserID": 71,
+    "Name": "codigo",
+    "Surname": "final",
+    "Email": "codigofinal@mail.com",
+    "Password": "$2b$10$nTKVe7Yh4n1u.ahuZ1T1KuEZjcFuuwRecFAmKEDsaeFlZrdkApWgW",
+    "Birthday": "1982-05-12",
+    "ProfilePicture": "1720215357932-imagenPerfil.jpg",
+    "Countries_CountryID": "4"
+  },
+  {
+    "UserID": 72,
+    "Name": "codigo",
+    "Surname": "final",
+    "Email": "codigofinal2@mail.com",
+    "Password": "$2b$10$Dz2qekg5TsTGa1Q9MqUZr.1QLIURv8I1mMirMufOqe43b9ac.2xaO",
+    "Birthday": "1982-05-12",
+    "ProfilePicture": "1720222556559-imagenPerfil.jpg",
+    "Countries_CountryID": "4"
+  },
+  {
+    "UserID": 73,
+    "Name": "El POst",
+    "Surname": "man",
+    "Email": "post15122334@man.com",
+    "Password": "159753",
+    "Birthday": "1982-05-12",
+    "ProfilePicture": null,
+    "Countries_CountryID": "7"
+  },
+  {
+    "UserID": 74,
+    "Name": "El-POst",
+    "Surname": "man",
+    "Email": "post1555122334@man.com",
+    "Password": "159753",
+    "Birthday": "1982-05-12",
+    "ProfilePicture": null,
+    "Countries_CountryID": "7"
+  },
+  {
+    "UserID": 75,
+    "Name": "codigo",
+    "Surname": "final",
+    "Email": "codigofinal4@mail.com",
+    "Password": "123456",
+    "Birthday": "1982-05-12",
+    "ProfilePicture": "1720322503594-imagenPerfil.jpg",
+    "Countries_CountryID": "9"
+  },
+  {
+    "UserID": 76,
+    "Name": "codigo",
+    "Surname": "final",
+    "Email": "codigofinal45@mail.com",
+    "Password": "123456",
+    "Birthday": "1982-05-12",
+    "ProfilePicture": "1720325999205-imagenPerfil.jpg",
+    "Countries_CountryID": "4"
   }
 ]

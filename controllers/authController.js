@@ -1,6 +1,9 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { getUserByEmail, createUser } = require('../controllers/userController');
+const { getUserByEmail, createUser, getUserById, updateUser } = require('../controllers/userController');
+const fs = require('fs');
+const path = require('path');
+const db = require('../db/db');
 
 // Función para hacer la firma digital
 function generateAccessToken(user) {
@@ -83,10 +86,49 @@ async function authenticateUser(req, res) {
     }
 }
 
+async function updateUserProfile(req, res) {
+    try {
+        const { UserID } = req.params;
+        const { Name, Surname, Email, Password, Birthday, Countries_CountryID } = req.body;
+        const ProfilePicture = req.file ? req.file.filename : null;
+
+        let updateData = {};
+        if (Name) updateData.Name = Name;
+        if (Surname) updateData.Surname = Surname;
+        if (Email) updateData.Email = Email;
+        if (Password) updateData.Password = await bcrypt.hash(Password, 10);
+        if (Birthday) updateData.Birthday = Birthday;
+        if (Countries_CountryID) updateData.Countries_CountryID = Countries_CountryID;
+        if (ProfilePicture) {
+            updateData.ProfilePicture = ProfilePicture;
+
+            const previousUser = await getUserById(UserID);
+            if (previousUser.ProfilePicture) {
+                const filePath = path.join(__dirname, '../uploads', previousUser.ProfilePicture);
+                fs.unlinkSync(filePath); // Eliminar archivo existente
+            }
+        }
+
+        const sql = 'UPDATE Users SET ? WHERE UserID = ?';
+        const [result] = await db.query(sql, [updateData, UserID]);
+
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+
+        res.json({ message: 'Perfil actualizado' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error interno del servidor' });
+    }
+}
+
+
 module.exports = {
     generateAccessToken,
     validateToken,
     loginPage,
     registerUser,
-    authenticateUser
+    authenticateUser,
+    updateUserProfile
 };
