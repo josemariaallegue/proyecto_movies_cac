@@ -1,3 +1,4 @@
+const { route } = require("../routes/root.js");
 const pool = require("../db/connectionMysql.js");
 
 const getMovies = async (req, res) => {
