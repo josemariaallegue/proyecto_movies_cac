@@ -1,5 +1,5 @@
 
-# Poryecto "Movies" del grupo 18
+# Proyecto "Movies" del grupo 18
 
 Proyecto de para el curso de "Codo a codo 2024" de backend en node.js, comision 24140.
 
@@ -29,7 +29,7 @@ Para correr este proyecto, es necesario agregar las siguientes variables de ento
 
 ## Instalación
 
-Clonar el proyecto con git. Luego de la descarga situarce en el directorio del proyecto
+Clonar el proyecto con git. Luego de la descarga situarse en el directorio del proyecto
 ```bash
   cd proyecto
 ```
@@ -51,13 +51,13 @@ Iniciar el servidor
     
 ## API Reference
 
-#### Get todas las peliculas
+#### Get para todas las peliculas
 
 ```http
   GET /movies
 ```
 
-#### Get movie individual
+#### Get para pelicula individual
 
 ```http
   GET /movies/{id}
@@ -75,7 +75,7 @@ Iniciar el servidor
 | :-------- | :------- | :-------------------------------- |
 | `title`      | `string` | **Required**. Titulo de la pelicula |
 | `director`      | `string` | **Required**. Director de la pelicula |
-| `date`      | `string` | **Required**. Fecha de la pelicula, formato valido "yyyy-mm-dd" |
+| `date`      | `integer` | **Required**. Fecha de la pelicula, formato valido "yyyy" |
 | `cover`      | `string` | **Required**. Ubicacion de la portada |
 | `country`      | `integer` | **Required**. Id del pais |
 | `genre`      | `integer` | **Required**. Id del genero |
@@ -90,14 +90,14 @@ Iniciar el servidor
 | `id`      | `string` | **Required**. Id de la pelicula a eliminar |
 
 ```http
-  GET /movies/{id}
+  PUT /movies/{id}
 ```
 
 | Body | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `title`      | `string` | **Required**. Titulo de la pelicula |
 | `director`      | `string` | **Required**. Director de la pelicula |
-| `date`      | `string` | **Required**. Fecha de la pelicula, formato valido "yyyy-mm-dd" |
+| `date`      | `integer` | **Required**. Fecha de la pelicula, formato valido "yyyy" |
 | `cover`      | `string` | **Required**. Ubicacion de la portada |
 | `country`      | `integer` | **Required**. Id del pais |
 | `genre`      | `integer` | **Required**. Id del genero |
