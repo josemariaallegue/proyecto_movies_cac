@@ -1,5 +1,5 @@
 const { route } = require("../routes/root.js");
-const pool = require("./connectionMysql.js");
+const pool = require("../db/connectionMysql.js");
 
 const getMovies = async (req, res) => {
   try {
@@ -66,8 +66,6 @@ const deleteMovie = async (req, res) => {
     const [result] = await pool.query("delete from Movies where MovieID=?", [
       id,
     ]);
-
-    console.log(result);
 
     if (result.affectedRows > 0) {
       res
