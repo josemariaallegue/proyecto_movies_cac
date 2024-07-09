@@ -1,4 +1,3 @@
-
 # Proyecto "Movies" del grupo 18
 
 Proyecto de para el curso de "Codo a codo 2024" de backend en node.js, comision 24140.
@@ -26,30 +25,35 @@ Para correr este proyecto, es necesario agregar las siguientes variables de ento
 
 `SERVER_PORT` - el puerto del servidor
 
-
 ## Instalación
 
 Clonar el proyecto con git. Luego de la descarga situarse en el directorio del proyecto
+
 ```bash
   cd proyecto
 ```
 
-Instalar los modulos de node requeridos 
+Instalar los modulos de node requeridos
+
 ```bash
   npm install
 ```
 
 Correr el script 'init' para inicializar la base de datos, crear las tablas necesarias y cargarlas con los datos de prueba
+
 ```bash
   npm run init
 ```
 
 Iniciar el servidor
+
 ```bash
   npm run start
 ```
-    
-## API Reference
+
+## API
+
+### Peliculas
 
 #### Get para todas las peliculas
 
@@ -63,41 +67,106 @@ Iniciar el servidor
   GET /movies/{id}
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
+| Parameter | Type     | Description                              |
+| :-------- | :------- | :--------------------------------------- |
 | `id`      | `string` | **Required**. Id de la pelicula a buscar |
+
+#### Post para pelicula
 
 ```http
   POST /movies
 ```
 
-| Body | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `title`      | `string` | **Required**. Titulo de la pelicula |
-| `director`      | `string` | **Required**. Director de la pelicula |
-| `date`      | `integer` | **Required**. Fecha de la pelicula, formato valido "yyyy" |
-| `cover`      | `string` | **Required**. Ubicacion de la portada |
-| `country`      | `integer` | **Required**. Id del pais |
-| `genre`      | `integer` | **Required**. Id del genero |
+| Body       | Type      | Description                                               |
+| :--------- | :-------- | :-------------------------------------------------------- |
+| `title`    | `string`  | **Required**. Titulo de la pelicula                       |
+| `director` | `string`  | **Required**. Director de la pelicula                     |
+| `date`     | `integer` | **Required**. Fecha de la pelicula, formato valido "yyyy" |
+| `cover`    | `string`  | **Required**. Ubicacion de la portada                     |
+| `country`  | `integer` | **Required**. Id del pais                                 |
+| `genre`    | `integer` | **Required**. Id del genero                               |
 
+#### Delete para pelicula
 
 ```http
   DELETE /movies/{id}
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
+| Parameter | Type     | Description                                |
+| :-------- | :------- | :----------------------------------------- |
 | `id`      | `string` | **Required**. Id de la pelicula a eliminar |
+
+#### Put para pelicula
 
 ```http
   PUT /movies/{id}
 ```
 
-| Body | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `title`      | `string` | **Required**. Titulo de la pelicula |
-| `director`      | `string` | **Required**. Director de la pelicula |
-| `date`      | `integer` | **Required**. Fecha de la pelicula, formato valido "yyyy" |
-| `cover`      | `string` | **Required**. Ubicacion de la portada |
-| `country`      | `integer` | **Required**. Id del pais |
-| `genre`      | `integer` | **Required**. Id del genero |
+| Body       | Type      | Description                                               |
+| :--------- | :-------- | :-------------------------------------------------------- |
+| `title`    | `string`  | **Required**. Titulo de la pelicula                       |
+| `director` | `string`  | **Required**. Director de la pelicula                     |
+| `date`     | `integer` | **Required**. Fecha de la pelicula, formato valido "yyyy" |
+| `cover`    | `string`  | **Required**. Ubicacion de la portada                     |
+| `country`  | `integer` | **Required**. Id del pais                                 |
+| `genre`    | `integer` | **Required**. Id del genero                               |
+
+### Usuarios
+
+#### Get para todos los usuarios
+
+```http
+  GET /users
+```
+
+#### Get para usuario individual
+
+```http
+  GET /users/{id}
+```
+
+| Parameter | Type     | Description                           |
+| :-------- | :------- | :------------------------------------ |
+| `id`      | `string` | **Required**. Id del usuario a buscar |
+
+#### Post para usuarios
+
+```http
+  POST /users
+```
+
+| Body             | Type      | Description                                                                |
+| :--------------- | :-------- | :------------------------------------------------------------------------- |
+| `name`           | `string`  | **Required**. Nombre del usuario                                           |
+| `surname`        | `string`  | **Required**. Apellido del usuario                                         |
+| `email`          | `string`  | **Required**. Email del usuario                                            |
+| `password`       | `string`  | **Required**. Password del usuario                                         |
+| `birthday`       | `string`  | **Required**. Fecha de nacimiento del usuario, formato valido "yyyy-mm-dd" |
+| `profilePicture` | `string`  | **Required**. Ubicacion de imagen del portada                              |
+| `country`        | `integer` | **Required**. Pais de origen                                               |
+
+#### Delete para usuario
+
+```http
+  DELETE /users/{id}
+```
+
+| Parameter | Type     | Description                             |
+| :-------- | :------- | :-------------------------------------- |
+| `id`      | `string` | **Required**. Id del usuario a eliminar |
+
+#### Put para usuario
+
+```http
+  PUT /users/{id}
+```
+
+| Body             | Type      | Description                                                                |
+| :--------------- | :-------- | :------------------------------------------------------------------------- |
+| `name`           | `string`  | **Required**. Nombre del usuario                                           |
+| `surname`        | `string`  | **Required**. Apellido del usuario                                         |
+| `email`          | `string`  | **Required**. Email del usuario                                            |
+| `password`       | `string`  | **Required**. Password del usuario                                         |
+| `birthday`       | `string`  | **Required**. Fecha de nacimiento del usuario, formato valido "yyyy-mm-dd" |
+| `profilePicture` | `string`  | **Required**. Ubicacion de imagen del portada                              |
+| `country`        | `integer` | **Required**. Pais de origen                                               |
