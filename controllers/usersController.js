@@ -1,108 +1,121 @@
-const { route } = require("../routes/root.js");
+const bcrypt = require("bcrypt");
 const pool = require("../db/connectionMysql.js");
 
-const getMovies = async (req, res) => {
+const getUsers = async (req, res) => {
   try {
-    const [result] = await pool.query("select * from Movies");
+    const [result] = await pool.query("select * from Users");
     res.status(200).json(result);
   } catch (err) {
     console.error({ error: err });
-    res.status(500).json({ msg: "Error getting all movies" });
+    res.status(500).json({ msg: "Error getting all users" });
   }
 };
 
-const getMovie = async (req, res) => {
+const getUser = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const [result] = await pool.query("select * from Movies where MovieID=?", [
+    const [result] = await pool.query("select * from Users where UserID=?", [
       id,
     ]);
 
     if (result.length === 0) {
-      res.status(404).json({ msg: `Movie with id '${id}' not found` });
+      res.status(404).json({ msg: `User with id '${id}' not found` });
     } else {
       res.status(200).json(result);
     }
   } catch (err) {
     console.error({ error: err });
-    res.status(500).json({ msg: "Error getting the movie" });
+    res.status(500).json({ msg: "Error getting the user" });
   }
 };
 
-const createMovie = async (req, res) => {
+const createUser = async (req, res) => {
   try {
-    const { title, director, date, cover, country, genre } = req.body;
+    const {
+      name,
+      surname,
+      email,
+      password,
+      birthday,
+      profilePicture,
+      country,
+    } = req.body;
 
-    const [movieInDatabase] = await pool.query(
-      "select * from Movies where Title=?",
-      [title]
+    const [userInDatabase] = await pool.query(
+      "select * from Users where Email=?",
+      [email]
     );
 
-    if (movieInDatabase.length !== 0) {
+    if (userInDatabase.length !== 0) {
       res
         .status(409)
-        .json({ msg: `Movie with name '${title}' already in database` });
+        .json({ msg: `User with name '${email}' already in database` });
     } else {
+      const saltRounds = 10;
+      const hashedPass = await bcrypt.hash(password, saltRounds);
+
       const [result, data] = await pool.query(
-        "insert into Movies values (null, ?, ?, ?, ?, ?, ?) ",
-        [title, director, date, cover, country, genre]
+        "insert into Users values (null, ?, ?, ?, ?, ?, ?, ?) ",
+        [name, surname, email, hashedPass, birthday, profilePicture, country]
       );
 
       if (result.affectedRows > 0) {
         res
           .status(201)
-          .json({ msg: `Movie with title '${title}' succesfully created` });
+          .json({ msg: `User with email '${email}' succesfully created` });
       }
     }
   } catch (err) {
     console.error({ error: err });
-    res.status(500).json({ msg: "Error creating the movie" });
+    res.status(500).json({ msg: "Error creating the user" });
   }
 };
 
-const deleteMovie = async (req, res) => {
+const deleteUser = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const [result] = await pool.query("delete from Movies where MovieID=?", [
-      id,
-    ]);
+    const [result] = await pool.query("delete from Users where UserID=?", [id]);
 
     if (result.affectedRows > 0) {
-      res
-        .status(200)
-        .json({ msg: `Movie with id '${id}' succesfully deleted` });
+      res.status(200).json({ msg: `User with id '${id}' succesfully deleted` });
     } else {
-      res.status(404).json({ msg: `Movie with id '${id}' not found` });
+      res.status(404).json({ msg: `User with id '${id}' not found` });
     }
   } catch (err) {
     console.error({ error: err });
-    res.status(500).json({ msg: "Error deleting the movie" });
+    res.status(500).json({ msg: "Error deleting the user" });
   }
 };
 
-const updateMovie = async (req, res) => {
+const updateUser = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const { title, director, date, cover, country, genre } = req.body;
+    const {
+      name,
+      surname,
+      email,
+      password,
+      birthday,
+      profilePicture,
+      country,
+    } = req.body;
 
-    const [movieInDatabase] = await pool.query(
-      "select * from Movies where Title=?",
-      [title]
-    );
+    const saltRounds = 10;
+    const hashedPass = await bcrypt.hash(password, saltRounds);
 
     const [result] = await pool.query(
-      "update Movies set Title=?, Director=?, Year=?, CoverImage=?, Countries_CountryID=?, Genres_GenreID=? where MovieID=?",
-      [title, director, date, cover, country, genre, id]
+      "update Users set Name=?, Surname=?, Email=?, Password=?, Birthday=?, ProfilePicture=?, Countries_CountryID=? where UserID=?",
+      [name, surname, email, hashedPass, birthday, profilePicture, country, id]
     );
 
     if (result.affectedRows > 0) {
-      res.status(200).json({ msg: `Movie with id ${id} succesfully updated` });
+      res.status(200).json({ msg: `User with id ${id} succesfully updated` });
     } else {
-      res.status(404).json({ msg: `Movie with id '${id}' not found` });
+      res.status(404).json({ msg: `User with id '${id}' not found` });
     }
   } catch (err) {
     console.error({ error: err });
-    res.status(500).json({ msg: "Error updating the movie" });
+    res.status(500).json({ msg: "Error updating the user" });
   }
 };
-module.exports = { getMovies, getMovie, createMovie, deleteMovie, updateMovie };
+module.exports = { getUsers, getUser, createUser, deleteUser, updateUser };
