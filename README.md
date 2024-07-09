@@ -45,7 +45,7 @@ Correr el script 'init' para inicializar la base de datos, crear las tablas nece
   npm run init
 ```
 
-Debe parece lo siguiente en la terminal luego de la ejecucion. En caso contrario volver a ejecutar el comando.
+Debe aparecer lo siguiente en la terminal luego de la ejecucion. En caso contrario volver a ejecutar el comando anterior.
 
 ```bash
   Connected to MySQL database
