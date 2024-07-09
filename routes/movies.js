@@ -1,5 +1,6 @@
 const express = require("express");
 const moviesController = require("../controllers/moviesController");
+const idHandler = require("../middleware/idHandler");
 
 const router = express.Router();
 
@@ -10,8 +11,8 @@ router
 
 router
   .route("/:id")
-  .get(moviesController.getMovie)
-  .delete(moviesController.deleteMovie)
-  .put(moviesController.updateMovie);
+  .get(idHandler, moviesController.getMovie)
+  .delete(idHandler, moviesController.deleteMovie)
+  .put(idHandler, moviesController.updateMovie);
 
 module.exports = router;

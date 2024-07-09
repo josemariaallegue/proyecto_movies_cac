@@ -13,7 +13,7 @@ const getUsers = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = req.id;
     const [result] = await pool.query("select * from Users where UserID=?", [
       id,
     ]);
@@ -73,7 +73,7 @@ const createUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = req.id;
     const [result] = await pool.query("delete from Users where UserID=?", [id]);
 
     if (result.affectedRows > 0) {
@@ -89,7 +89,7 @@ const deleteUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = req.id;
     const {
       name,
       surname,

@@ -12,7 +12,7 @@ const getMovies = async (req, res) => {
 
 const getMovie = async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = req.id;
     const [result] = await pool.query("select * from Movies where MovieID=?", [
       id,
     ]);
@@ -61,7 +61,7 @@ const createMovie = async (req, res) => {
 
 const deleteMovie = async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = req.id;
     const [result] = await pool.query("delete from Movies where MovieID=?", [
       id,
     ]);
@@ -81,7 +81,7 @@ const deleteMovie = async (req, res) => {
 
 const updateMovie = async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const id = req.id;
     const { title, director, date, cover, country, genre } = req.body;
 
     const [result] = await pool.query(
