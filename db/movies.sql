@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `Name` VARCHAR(45) NOT NULL,
   `Surname` VARCHAR(45) NOT NULL,
   `Email` VARCHAR(255) NOT NULL,
-  `Password` VARCHAR(45) NOT NULL,
+  `Password` VARCHAR(255) NOT NULL,
   `Birthday` DATETIME NOT NULL,
   `ProfilePicture` VARCHAR(255) NULL,
   `Countries_CountryID` INT NOT NULL,
