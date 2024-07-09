@@ -45,6 +45,17 @@ Correr el script 'init' para inicializar la base de datos, crear las tablas nece
   npm run init
 ```
 
+Debe parece lo siguiente en la terminal luego de la ejecucion. En caso contrario volver a ejecutar el comando.
+
+```bash
+  Connected to MySQL database
+  Tables created successfully
+  Inserted 12 rows into Genres
+  Inserted 19 rows into Users
+  Inserted 15 rows into Countries
+  Inserted 11 rows into Movies
+```
+
 Iniciar el servidor
 
 ```bash
