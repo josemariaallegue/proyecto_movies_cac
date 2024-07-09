@@ -84,11 +84,6 @@ const updateMovie = async (req, res) => {
     const id = parseInt(req.params.id);
     const { title, director, date, cover, country, genre } = req.body;
 
-    const [movieInDatabase] = await pool.query(
-      "select * from Movies where Title=?",
-      [title]
-    );
-
     const [result] = await pool.query(
       "update Movies set Title=?, Director=?, Year=?, CoverImage=?, Countries_CountryID=?, Genres_GenreID=? where MovieID=?",
       [title, director, date, cover, country, genre, id]
